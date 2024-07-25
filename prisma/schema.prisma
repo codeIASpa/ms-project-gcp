@@ -1,0 +1,29 @@
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Turistic {
+  id           Int          @id @default(autoincrement())
+  title        String
+  description  String
+  header       String
+  image        String
+  thingsToDo   String        @map("things_to_do")
+  attractions  Attraction[]
+  createdAt    DateTime     @default(now())
+}
+
+model Attraction {
+  id          Int      @id @default(autoincrement())
+  name        String
+  turisticId  Int
+  turistic    Turistic @relation(fields: [turisticId], references: [id], onDelete: Cascade)
+
+  @@index([turisticId])
+}

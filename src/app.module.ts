@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PubsubModule } from './pubsub/pubsub.module';
 import { ConfigModule } from '@nestjs/config';
+import { TuristicModule } from './turistic/turistic.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
@@ -10,6 +12,8 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true,
     }),
     PubsubModule,
+    TuristicModule,
+    PrismaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
